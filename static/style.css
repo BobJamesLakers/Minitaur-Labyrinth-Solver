@@ -1,0 +1,175 @@
+/* Importa a fonte Greek Freak */
+@font-face {
+  font-family: 'Greek Freak';
+  src: url('/static/fonts/Greek-Freak.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Fundo com imagem ocupando a tela inteira */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Greek Freak', sans-serif;
+}
+
+body {
+  background: url('/static/image/fundo1.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Topo */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 80px;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Rodapé */
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 80px;
+  position: absolute;
+  bottom: 12%;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+/* Título */
+h1 {
+  font-size: 32px;
+  color: #2e0000;
+  margin: 0;
+}
+
+/* Parágrafo */
+h2 {
+  margin: 0;
+  font-size: 16px;
+  color: #8a1b03;
+}
+
+/* Botões (herda estilo anterior) */
+.rodape button {
+  font-size: 14px;
+}
+
+/* O restante do CSS permanece igual */
+
+/* Labirinto */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(21, 16px);
+  grid-template-rows: repeat(21, 16px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  z-index: 1;
+}
+
+.cell {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ccc;
+  background-color: #d9c49a;
+  color: #333;
+  box-sizing: border-box;
+  transition: background-color 0.2s;
+}
+
+.cell.parede {
+  background-color: #8a1b03;
+}
+
+.cell.inicio {
+  background-color: rgb(0, 0, 0);
+}
+
+.cell.fim {
+  background-color: #000;
+}
+
+.cell.caminho {
+  background-color: #c0994c;
+}
+
+/* Botões */
+.botoes {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: 'Greek Freak', sans-serif;
+  border: none;
+  background-color: #8a1b03;
+  color: #333;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #d9c49a;
+}
+
+/* Responsivo para telas menores (até 768px) */
+@media (max-width: 768px) {
+  .topo, .rodape {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  h1, h2 {
+    font-size: 18px;
+  }
+
+  .grid {
+    transform: scale(0.9); /* opcional para caber melhor na tela */
+  }
+
+  button {
+    width: 80%;
+    max-width: 250px;
+  }
+}
+
+/* Responsivo para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+  .grid {
+    transform: scale(0.8);
+  }
+
+h1, h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+}
