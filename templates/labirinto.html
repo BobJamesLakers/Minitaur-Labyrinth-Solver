@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="/static/image/mino.png" type="image/logo_1">
+  <title>Labirinto do Minotauro</title>
+</head>
+<body>
+  <!-- Topo -->
+  <div class="topo">
+    <h1>Labirinto do Minotauro</h1>
+    <h2>Clique para escolher o <strong>início</strong> e o <strong>fim</strong></h2>
+  </div>
+
+  <!-- Labirinto -->
+  <div id="labirinto" class="grid"></div>
+
+  <!-- Rodapé -->
+  <div class="rodape">
+    <button id="encontrar">🧭 Encontrar Caminho</button>
+    <button id="resetar">🔄 Resetar</button>
+  </div>
+
+  <!-- Áudio -->
+  <audio id="musica" autoplay loop>
+    <source src="/static/audio/god.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Scripts -->
+  <script src="/static/script.js"></script>
+
+  <script>
+    // Toca a música no primeiro clique em qualquer lugar que não seja o botão "resetar"
+    window.addEventListener('click', (event) => {
+      const audio = document.getElementById("musica");
+      const resetBtn = document.getElementById("resetar");
+
+      if (event.target !== resetBtn && audio.paused) {
+        audio.play();
+      }
+    });
+  </script>
+
+  <script>
+    document.getElementById("resetar").addEventListener("click", () => {
+  const audio = document.getElementById("musica");
+
+  // Pausar e zerar a música
+  audio.pause();
+  audio.currentTime = 0;
+
+  // Aguardar 300ms antes de recarregar
+  setTimeout(() => {
+    window.location.reload();
+  }, 300);
+});
+  </script>
+</body>
+</html>
